@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mountain_kidz_app">
    <application
-        android:label="mountain_kidz_app"
+        android:label="Mountain Kidz Daycare Centre"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -31,4 +31,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    
 </manifest>

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mountain_kidz_app/controller/login_controller.dart';
+import 'package:mountain_kidz_app/provider/message_provider.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -13,155 +14,135 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           title: const Text(
             'Login Into Dashboard',
-            style: TextStyle(
-              height: 1.5,
-              fontSize: 16,
-              letterSpacing: 0.5,
-              wordSpacing: 0.5,
-            ),
           ),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.all(20),
-              child: Column(children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                //username
-                TextFormField(
-                  controller: usernameController,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
+              padding: const EdgeInsets.all(30),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    //username
+                    TextFormField(
+                      controller: usernameController,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        // fillColor: const Color(0xFFF2F2F2),
+                        prefixIcon: Icon(Icons.person),
+                        border: InputBorder.none,
+                        hintText: "Username",
+                        contentPadding: EdgeInsets.fromLTRB(
+                          20.0,
+                          15.0,
+                          20.0,
+                          15.0,
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(25.0),
                     ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    filled: true,
-                    fillColor: const Color(0xFFF2F2F2),
-                    prefixIcon: const Icon(Icons.person),
-                    border: InputBorder.none,
-                    hintText: "Username",
-                    hintStyle: Theme.of(context).textTheme.bodyText2,
-                    contentPadding: const EdgeInsets.fromLTRB(
-                      20.0,
-                      15.0,
-                      20.0,
-                      15.0,
-                    ),
-                  ),
-                ),
 
-                const SizedBox(
-                  height: 30,
-                ),
+                    const SizedBox(
+                      height: 30,
+                    ),
 
-                //password
-                TextFormField(
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
+                    //password
+                    TextFormField(
+                      controller: passwordController,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        // fillColor: const Color(0xFFF2F2F2),
+                        prefixIcon: Icon(Icons.lock),
+                        border: InputBorder.none,
+                        hintText: "password",
+                        contentPadding: EdgeInsets.fromLTRB(
+                          20.0,
+                          15.0,
+                          20.0,
+                          15.0,
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(25.0),
                     ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    filled: true,
-                    fillColor: const Color(0xFFF2F2F2),
-                    prefixIcon: const Icon(Icons.lock),
-                    border: InputBorder.none,
-                    hintText: "password",
-                    hintStyle: Theme.of(context).textTheme.bodyText2,
-                    contentPadding: const EdgeInsets.fromLTRB(
-                      20.0,
-                      15.0,
-                      20.0,
-                      15.0,
-                    ),
-                  ),
-                ),
 
-                const SizedBox(
-                  height: 50,
-                ),
+                    TextButton(
+                        onPressed: () => Get.offNamed('/register'),
+                        child: Text(
+                          'Forgot Password ?',
+                          style: Theme.of(context).primaryTextTheme.labelMedium,
+                        )),
 
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                    shape: const StadiumBorder(),
-                    minimumSize: const Size(
-                      double.infinity,
-                      50,
+                    const SizedBox(
+                      height: 50,
                     ),
-                  ),
-                  onPressed: () {
-                    if (usernameController.text == "" ||
-                        passwordController.text == "") {
-                      Get.snackbar(
-                        "Error",
-                        "All fields are required",
-                        icon: const Icon(Icons.no_meals, color: Colors.white),
-                        duration: const Duration(seconds: 3),
-                        backgroundColor: Colors.red,
-                        colorText: Colors.white,
-                        animationDuration: const Duration(seconds: 1),
-                        dismissDirection: DismissDirection.horizontal,
-                        snackPosition: SnackPosition.TOP,
-                      );
-                    } else {
-                      final Map<String, String> data = {
-                        "username": usernameController.text,
-                        "password": passwordController.text
-                      };
-                      final response = loginController.handleLogin(data);
-                    }
 
-                    // Get.offNamed('/userDashboard');
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      SizedBox(
-                        width: 20,
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Theme.of(context).iconTheme.color,
+                        shape: const StadiumBorder(),
+                        minimumSize: const Size(
+                          double.infinity,
+                          50,
+                        ),
                       ),
-                      Text('Login'),
-                    ],
-                  ),
-                ),
-              ]),
+                      onPressed: () async {
+                        if (usernameController.text == "" ||
+                            passwordController.text == "") {
+                          MessageProvider.errorMessage(
+                              'Error', 'All fields are required');
+                        } else {
+                          final Map<String, String> data = {
+                            "username": usernameController.text,
+                            "password": passwordController.text
+                          };
+                          var response =
+                              await loginController.handleLogin(data);
+                          if (response == 'Logged in successful') {
+                            MessageProvider.successMessage(
+                                'Success', 'Logged in successful');
+                          } else if (response == 'User doesnot exists') {
+                            MessageProvider.errorMessage(
+                                'Error', 'User doesnot exist');
+                          } else {
+                            MessageProvider.errorMessage(
+                                'Error', 'Internal Server Error');
+                          }
+                        }
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Text('Login'),
+                        ],
+                      ),
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account ?",
+                          style: Theme.of(context).primaryTextTheme.labelLarge,
+                        ),
+                        TextButton(
+                          onPressed: () => Get.offNamed('/register'),
+                          child: const Text(
+                            'Register',
+                          ),
+                        ),
+                      ],
+                    ),
+                  ]),
             ),
           ),
         ));

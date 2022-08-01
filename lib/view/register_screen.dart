@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mountain_kidz_app/controller/register_controller.dart';
+import 'package:mountain_kidz_app/provider/message_provider.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
@@ -7,25 +9,20 @@ class RegisterScreen extends StatelessWidget {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
+  RegisterController registerController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          centerTitle: true,
           title: const Text(
             'Register New User',
-            style: TextStyle(
-              height: 1.5,
-              fontSize: 16,
-              letterSpacing: 0.5,
-              wordSpacing: 0.5,
-            ),
           ),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(30),
               child: Column(children: [
                 const SizedBox(
                   height: 50,
@@ -33,34 +30,13 @@ class RegisterScreen extends StatelessWidget {
                 //username
                 TextFormField(
                   controller: usernameController,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
+                  decoration: const InputDecoration(
                     filled: true,
-                    fillColor: const Color(0xFFF2F2F2),
-                    prefixIcon: const Icon(Icons.person),
+                    // fillColor: const Color(0xFFF2F2F2),
+                    prefixIcon: Icon(Icons.person),
                     border: InputBorder.none,
                     hintText: "Username",
-                    hintStyle: Theme.of(context).textTheme.bodyText2,
-                    contentPadding: const EdgeInsets.fromLTRB(
+                    contentPadding: EdgeInsets.fromLTRB(
                       20.0,
                       15.0,
                       20.0,
@@ -76,77 +52,13 @@ class RegisterScreen extends StatelessWidget {
                 //password
                 TextFormField(
                   controller: passwordController,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
+                  decoration: const InputDecoration(
                     filled: true,
-                    fillColor: const Color(0xFFF2F2F2),
-                    prefixIcon: const Icon(Icons.lock),
+                    // fillColor: const Color(0xFFF2F2F2),
+                    prefixIcon: Icon(Icons.lock),
                     border: InputBorder.none,
                     hintText: "password",
-                    hintStyle: Theme.of(context).textTheme.bodyText2,
-                    contentPadding: const EdgeInsets.fromLTRB(
-                      20.0,
-                      15.0,
-                      20.0,
-                      15.0,
-                    ),
-                  ),
-                ),
-
-                const SizedBox(
-                  height: 30,
-                ),
-
-                // confirm password
-                TextFormField(
-                  controller: confirmPasswordController,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                        color: Color(0xFFF2F2F2),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    filled: true,
-                    fillColor: const Color(0xFFF2F2F2),
-                    prefixIcon: const Icon(Icons.lock),
-                    border: InputBorder.none,
-                    hintText: "confirm password",
-                    hintStyle: Theme.of(context).textTheme.bodyText2,
-                    contentPadding: const EdgeInsets.fromLTRB(
+                    contentPadding: EdgeInsets.fromLTRB(
                       20.0,
                       15.0,
                       20.0,
@@ -161,14 +73,37 @@ class RegisterScreen extends StatelessWidget {
 
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
+                    primary: Theme.of(context).iconTheme.color,
                     shape: const StadiumBorder(),
                     minimumSize: const Size(
                       double.infinity,
                       50,
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (usernameController.text == "" ||
+                        passwordController.text == "") {
+                      MessageProvider.errorMessage(
+                          'Error', 'All fields are required');
+                    } else {
+                      final Map<String, String> data = {
+                        "username": usernameController.text,
+                        "password": passwordController.text
+                      };
+                      final response =
+                          await registerController.handleRegister(data);
+                      if (response == 'success') {
+                        MessageProvider.successMessage(
+                            'Success', 'User registered successfully');
+                      } else if (response == 'user already exists') {
+                        MessageProvider.errorMessage(
+                            'Error', 'Username already exists');
+                      } else {
+                        MessageProvider.errorMessage(
+                            'Error', 'Internal Server Error');
+                      }
+                    }
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
@@ -178,6 +113,24 @@ class RegisterScreen extends StatelessWidget {
                       Text('Register'),
                     ],
                   ),
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account ?",
+                      style:Theme.of(context).primaryTextTheme.labelLarge,
+                    ),
+                    TextButton(
+                      onPressed: () => Get.offNamed('/login'),
+                      child: const Text('Login'),
+                    ),
+                  ],
                 ),
               ]),
             ),

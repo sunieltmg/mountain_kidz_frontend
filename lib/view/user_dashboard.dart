@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
+import 'package:mountain_kidz_app/view/tab_items/tab_course.dart';
+import 'package:mountain_kidz_app/view/tab_items/tab_homework.dart';
+import 'package:mountain_kidz_app/view/tab_items/tab_result.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class UserDashboard extends StatelessWidget {
   const UserDashboard({Key? key}) : super(key: key);
@@ -11,15 +16,10 @@ class UserDashboard extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.green,
-              ),
+            DrawerHeader(
               child: Text(
                 'technicalnepal31@gmail.com',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
+                style: Theme.of(context).primaryTextTheme.labelLarge,
               ),
             ),
             ListTile(
@@ -31,6 +31,16 @@ class UserDashboard extends StatelessWidget {
             ),
             ListTile(
               title: const Text('Course'),
+              onTap: () {},
+            ),
+            ListTile(
+              title: const Text('Enable Dark Theme'),
+              trailing: Switch(
+                  activeColor: Theme.of(context).colorScheme.secondary,
+                  value: false,
+                  onChanged: (bool) {
+                    bool = true;
+                  }),
               onTap: () {},
             ),
           ],
@@ -48,6 +58,68 @@ class UserDashboard extends StatelessWidget {
           ),
         ),
       ),
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(
+            left: 15,
+            top: 20,
+            right: 15,
+            bottom: 10,
+          ),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: Text('Education \nIs Our Business',
+                  style: Theme.of(context).primaryTextTheme.headlineLarge),
+            ),
+            const SizedBox(height: 35),
+            DefaultTabController(
+              length: 4,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TabBar(
+                    indicatorPadding: const EdgeInsets.only(top: 5),
+                    indicator: UnderlineTabIndicator(
+                        borderSide: BorderSide(
+                            width: 4.0,
+                            color: Theme.of(context).colorScheme.secondary),
+                        insets: const EdgeInsets.symmetric(horizontal: 16.0)),
+                    tabs: const [
+                      Tab(
+                        child: Text('Courses'),
+                      ),
+                      Tab(
+                        child: Text('Attendance'),
+                      ),
+                      Tab(
+                        child: Text('Results'),
+                      ),
+                      Tab(
+                        child: Text('Homework'),
+                      ),
+                    ],
+                    isScrollable: true,
+                  ),
+                  SizedBox(
+                    height: 450,
+                    child: TabBarView(
+                      children: [
+                        TabCourse(),
+                        TabAttendance(),
+                        TabResult(),
+                        TabHomework(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]),
+        ),
+      )),
     );
   }
 }

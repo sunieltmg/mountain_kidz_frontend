@@ -16,7 +16,6 @@ class AddEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -25,14 +24,9 @@ class AddEmail extends StatelessWidget {
             onPressed: () => Get.offNamed('/userDashboard'),
           ),
           centerTitle: true,
-          title: const Text(
+          title: Text(
             'ADD EMAIL',
-            style: TextStyle(
-              height: 1.5,
-              fontSize: 16,
-              letterSpacing: 0.5,
-              wordSpacing: 0.5,
-            ),
+            style: Theme.of(context).primaryTextTheme.titleLarge,
           ),
         ),
         body: SafeArea(
@@ -104,7 +98,8 @@ class AddEmail extends StatelessWidget {
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(150, 45),
+                        primary: Theme.of(context).iconTheme.color,
+                        minimumSize: const Size(100, 35),
                       ),
                       onPressed: () => emailJsController.addEmail(
                           receiverNameController.text,

@@ -3,11 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:mountain_kidz_app/controller/email_js_controller.dart';
 import 'package:mountain_kidz_app/controller/login_controller.dart';
+import 'package:mountain_kidz_app/controller/register_controller.dart';
+import 'package:mountain_kidz_app/provider/theme_provider.dart';
 import 'package:mountain_kidz_app/view/add_course.dart';
 import 'package:mountain_kidz_app/view/add_email.dart';
 import 'package:mountain_kidz_app/view/login_screen.dart';
+import 'package:mountain_kidz_app/view/on_boarding_screen/on_boarding_screen.dart';
 import 'package:mountain_kidz_app/view/register_screen.dart';
 import 'package:mountain_kidz_app/view/user_dashboard.dart';
+import 'package:mountain_kidz_app/view/tab_items/user_tab_item.dart';
 
 void main() {
   runApp(const MountainKidz());
@@ -20,19 +24,19 @@ class MountainKidz extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    String initialRoute = '/login';
+    String initialRoute = '/onBoardingScreen';
 
     return GetMaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+      themeMode: ThemeMode.light,
+      theme: MyThemes.lightTheme,
+      darkTheme: MyThemes.darkTheme,
       initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
       title: 'Mountain Kidz & Daycare',
       getPages: [
         GetPage(
           name: '/userDashboard',
-          page: () => UserDashboard(),
+          page: () => const UserDashboard(),
         ),
         GetPage(
           name: '/addEmail',
@@ -43,7 +47,7 @@ class MountainKidz extends StatelessWidget {
         ),
         GetPage(
           name: '/addCourse',
-          page: () => AddCourse(),
+          page: () => const AddCourse(),
         ),
         GetPage(
             name: '/login',
@@ -52,9 +56,16 @@ class MountainKidz extends StatelessWidget {
               Get.lazyPut<LoginController>(() => LoginController());
             })),
         GetPage(
-          name: '/register',
-          page: () => RegisterScreen(),
+            name: '/register',
+            page: () => RegisterScreen(),
+            binding: BindingsBuilder(() {
+              Get.lazyPut<RegisterController>(() => RegisterController());
+            })),
+        GetPage(
+          name: '/userTabItem',
+          page: () => const UserTabItem(),
         ),
+        GetPage(name: '/onBoardingScreen', page: () => OnBoardingScreen()),
       ],
     );
   }
