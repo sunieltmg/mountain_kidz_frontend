@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:mountain_kidz_app/controller/bottom_navigation_controller.dart';
 import 'package:mountain_kidz_app/controller/email_js_controller.dart';
 import 'package:mountain_kidz_app/controller/login_controller.dart';
 import 'package:mountain_kidz_app/controller/register_controller.dart';
@@ -14,11 +15,14 @@ import 'package:mountain_kidz_app/view/user_dashboard.dart';
 import 'package:mountain_kidz_app/view/tab_items/user_tab_item.dart';
 
 void main() {
-  runApp(const MountainKidz());
+  runApp(MountainKidz());
 }
 
 class MountainKidz extends StatelessWidget {
-  const MountainKidz({Key? key}) : super(key: key);
+  MountainKidz({Key? key}) : super(key: key);
+  final BottomNavigationController bottomNavigationController =
+      Get.put(BottomNavigationController());
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -36,7 +40,7 @@ class MountainKidz extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/userDashboard',
-          page: () => const UserDashboard(),
+          page: () => UserDashboard(),
         ),
         GetPage(
           name: '/addEmail',

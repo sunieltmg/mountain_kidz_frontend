@@ -49,6 +49,7 @@ class TabCourse extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
         top: 30,
+        bottom: 30,
       ),
       // child: Column(
       // children: [
