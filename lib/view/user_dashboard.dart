@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mountain_kidz_app/controller/bottom_navigation_controller.dart';
+import 'package:mountain_kidz_app/services/light_dark_mode_service.dart';
 import 'package:mountain_kidz_app/view/profile/user_profile.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_course.dart';
@@ -12,11 +13,9 @@ class UserDashboard extends StatelessWidget {
 
   BottomNavigationController bottomNavigationController = Get.find();
   final screens = [
-    userHome(),
-    Container(
-      child: Text('Explore'),
-    ),
-    UserProfile(),
+    const userHome(),
+    const Text('Explore'),
+    const UserProfile(),
   ];
 
   @override
@@ -57,7 +56,10 @@ class UserDashboard extends StatelessWidget {
                 ),
               ),
               ListTile(
-                trailing: const Icon(Icons.email),
+                trailing: const Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: Icon(Icons.email),
+                ),
                 title: const Text('Send Email'),
                 onTap: () => Get.toNamed("/addEmail", arguments: {
                   "SenderName": 'Sunil Tamang',
@@ -66,13 +68,16 @@ class UserDashboard extends StatelessWidget {
               ),
               ListTile(
                 title: const Text('Course'),
-                trailing: const Icon(Icons.book),
+                trailing: const Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: Icon(Icons.book),
+                ),
                 onTap: () {},
               ),
               ListTile(
                 title: const Text('Dark Mode'),
                 trailing: Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Switch(
                       activeColor: Theme.of(context).colorScheme.secondary,
                       value: false,
@@ -82,6 +87,15 @@ class UserDashboard extends StatelessWidget {
                 ),
                 onTap: () {},
               ),
+              ListTile(
+                  title: const Text('Dark Mode'),
+                  trailing: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: TextButton(
+                          onPressed: () {
+                            ThemeService().changeThemeMode();
+                          },
+                          child: const Text('change ')))),
             ],
           ),
         ),
@@ -158,9 +172,9 @@ class userHome extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       TabCourse(),
-                      TabAttendance(),
-                      TabResult(),
-                      TabHomework(),
+                      const TabAttendance(),
+                      const TabResult(),
+                      const TabHomework(),
                     ],
                   ),
                 ),
