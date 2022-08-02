@@ -44,10 +44,8 @@ class TabCourse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(courseData[0]['title']);
-    print(courseData[0]['image']);
     return Container(
-      padding: EdgeInsets.only(
+      padding: const EdgeInsets.only(
         top: 30,
         bottom: 30,
       ),
@@ -90,14 +88,20 @@ class TabCourse extends StatelessWidget {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
-                            "${courseData[index]['image'].toString()}"),
+                        image: CachedNetworkImageProvider(
+                          courseData[index]['image'].toString(),
+                        ),
+                        // image: NetworkImage(
+                        //     "${courseData[index]['image'].toString()}"),
                       ),
-                      color: Colors.yellow,
+                      color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(10)),
                 ),
               ),
-              Text(courseData[index]['title'].toString()),
+              Text(
+                courseData[index]['title'].toString(),
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
             ],
           );
         },

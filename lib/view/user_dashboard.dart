@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mountain_kidz_app/controller/bottom_navigation_controller.dart';
+import 'package:mountain_kidz_app/controller/dark_light_mode_controller.dart';
 import 'package:mountain_kidz_app/services/light_dark_mode_service.dart';
 import 'package:mountain_kidz_app/view/profile/user_profile.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
@@ -17,6 +19,8 @@ class UserDashboard extends StatelessWidget {
     const Text('Explore'),
     const UserProfile(),
   ];
+
+  final DarkLightModeController darkLightModeController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -75,27 +79,23 @@ class UserDashboard extends StatelessWidget {
                 onTap: () {},
               ),
               ListTile(
-                title: const Text('Dark Mode'),
+                title: const Text('Change Theme'),
                 trailing: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: Switch(
-                      activeColor: Theme.of(context).colorScheme.secondary,
-                      value: false,
-                      onChanged: (bool) {
-                        bool = true;
-                      }),
+                  child: Obx(
+                    () => Switch(
+                        activeColor: Theme.of(context).iconTheme.color,
+                        // value: darkLightModeController.status.value,
+                        value: darkLightModeController.status.value,
+                        onChanged: (val) {
+                          darkLightModeController.status.value = val;
+
+                          ThemeService().changeThemeMode();
+                        }),
+                  ),
                 ),
                 onTap: () {},
               ),
-              ListTile(
-                  title: const Text('Dark Mode'),
-                  trailing: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: TextButton(
-                          onPressed: () {
-                            ThemeService().changeThemeMode();
-                          },
-                          child: const Text('change ')))),
             ],
           ),
         ),
@@ -145,10 +145,10 @@ class userHome extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TabBar(
-                  indicatorPadding: const EdgeInsets.only(top: 5),
+                  indicatorPadding: const EdgeInsets.only(top: 0),
                   indicator: UnderlineTabIndicator(
                       borderSide: BorderSide(
-                          width: 4.0,
+                          width: 3.0,
                           color: Theme.of(context).colorScheme.secondary),
                       insets: const EdgeInsets.symmetric(horizontal: 16.0)),
                   tabs: const [

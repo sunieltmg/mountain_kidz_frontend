@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mountain_kidz_app/controller/email_js_controller.dart';
+import 'package:mountain_kidz_app/provider/message_provider.dart';
 
 class AddEmail extends StatelessWidget {
   AddEmail({Key? key}) : super(key: key);
@@ -17,7 +18,6 @@ class AddEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -25,7 +25,7 @@ class AddEmail extends StatelessWidget {
           ),
           centerTitle: true,
           title: Text(
-            'ADD EMAIL',
+            'SEND EMAIL',
             style: Theme.of(context).primaryTextTheme.titleLarge,
           ),
         ),
@@ -33,14 +33,12 @@ class AddEmail extends StatelessWidget {
           child: SingleChildScrollView(
             child: Container(
               padding: const EdgeInsets.only(
-                top: 10,
+                top: 50,
                 left: 20,
                 bottom: 10,
                 right: 20,
               ),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
+              decoration: const BoxDecoration(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,69 +49,94 @@ class AddEmail extends StatelessWidget {
                   TextFormField(
                     controller: receiverNameController,
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.person),
+                      icon: Padding(
+                        padding: EdgeInsets.only(right: 18.0),
+                        child: Icon(Icons.person),
+                      ),
                       labelText: 'name*',
                     ),
                   ),
 
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
 
                   // receiver email
                   TextFormField(
                     controller: receiverEmailController,
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.email),
+                      icon: Padding(
+                        padding: EdgeInsets.only(right: 18.0),
+                        child: Icon(Icons.email),
+                      ),
                       labelText: 'email*',
                     ),
                   ),
 
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   // subject
                   TextFormField(
                     controller: subjectController,
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.title),
+                      icon: Padding(
+                        padding: EdgeInsets.only(right: 18.0),
+                        child: Icon(Icons.title),
+                      ),
                       labelText: 'Subject*',
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   // message
                   TextFormField(
                     controller: messageController,
-                    maxLines: 5,
+                    maxLines: 3,
                     decoration: const InputDecoration(
-                      icon: Icon(Icons.note),
+                      icon: Padding(
+                        padding: EdgeInsets.only(right: 18.0),
+                        child: Icon(Icons.note),
+                      ),
                       labelText: 'message *',
                     ),
                   ),
 
                   const SizedBox(
-                    height: 30,
+                    height: 40,
                   ),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Theme.of(context).iconTheme.color,
-                        minimumSize: const Size(100, 35),
-                      ),
-                      onPressed: () => emailJsController.addEmail(
-                          receiverNameController.text,
-                          receiverEmailController.text,
-                          subjectController.text,
-                          messageController.text),
-                      child: const Text(
-                        'Send Email',
-                        style: TextStyle(
-                          fontSize: 15,
-                          letterSpacing: 1,
-                          wordSpacing: 0.5,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 50),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Theme.of(context).iconTheme.color,
+                          minimumSize: const Size(100, 35),
                         ),
-                      )),
+                        onPressed: () {
+                          if (receiverNameController.text == "" ||
+                              receiverEmailController.text == "" ||
+                              subjectController.text == "" ||
+                              messageController.text == "") {
+                            MessageProvider.errorMessage(
+                                'Error', 'All fields are required');
+                          } else {
+                            emailJsController.addEmail(
+                                receiverNameController.text,
+                                receiverEmailController.text,
+                                subjectController.text,
+                                messageController.text);
+                          }
+                        },
+                        child: const Text(
+                          'Send Email',
+                          style: TextStyle(
+                            fontSize: 15,
+                            letterSpacing: 1,
+                            wordSpacing: 0.5,
+                          ),
+                        )),
+                  ),
                 ],
               ),
             ),

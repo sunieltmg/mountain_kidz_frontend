@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mountain_kidz_app/controller/bottom_navigation_controller.dart';
+import 'package:mountain_kidz_app/controller/dark_light_mode_controller.dart';
 import 'package:mountain_kidz_app/controller/email_js_controller.dart';
 import 'package:mountain_kidz_app/controller/login_controller.dart';
 import 'package:mountain_kidz_app/controller/register_controller.dart';
@@ -25,6 +26,9 @@ class MountainKidz extends StatelessWidget {
   MountainKidz({Key? key}) : super(key: key);
   final BottomNavigationController bottomNavigationController =
       Get.put(BottomNavigationController());
+
+  final DarkLightModeController darkLightModeController =
+      Get.put(DarkLightModeController());
 
   @override
   Widget build(BuildContext context) {

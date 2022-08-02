@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import "package:http/http.dart" as http;
+import 'package:mountain_kidz_app/provider/message_provider.dart';
 
 class EmailJsService {
   static var client = http.Client();
@@ -32,17 +33,8 @@ class EmailJsService {
           }));
 
       if (response.statusCode == 200) {
-        return Get.snackbar(
-          "Success",
-          "Email sent successfully ",
-          icon: const Icon(Icons.no_meals, color: Colors.white),
-          duration: const Duration(seconds: 3),
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-          animationDuration: const Duration(seconds: 1),
-          dismissDirection: DismissDirection.horizontal,
-          snackPosition: SnackPosition.TOP,
-        );
+        return MessageProvider.successMessage(
+            'Success', 'Email send successful.');
 
         // return 'Email send successfully';
       }
