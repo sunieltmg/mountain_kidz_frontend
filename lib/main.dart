@@ -35,7 +35,7 @@ class MountainKidz extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    String initialRoute = '/onBoardingScreen';
+    String initialRoute = '/login';
 
     return GetMaterialApp(
       themeMode: ThemeService().getThemeMode(),

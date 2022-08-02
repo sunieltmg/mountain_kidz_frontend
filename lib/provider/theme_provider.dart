@@ -20,13 +20,13 @@ class MyThemes {
         fontSize: 18.0,
         height: 1.5,
       ),
-      labelLarge: const TextStyle(
-        color: Colors.grey,
+      labelLarge: TextStyle(
+        color: Colors.white.withOpacity(0.5),
         letterSpacing: 0.8,
         wordSpacing: 0.5,
         fontSize: 15.0,
         height: 1.5,
-        fontWeight: FontWeight.w300,
+        fontWeight: FontWeight.w400,
       ),
       labelMedium: const TextStyle(
         color: Colors.grey,

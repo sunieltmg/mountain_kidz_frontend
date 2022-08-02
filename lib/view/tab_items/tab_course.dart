@@ -91,8 +91,6 @@ class TabCourse extends StatelessWidget {
                         image: CachedNetworkImageProvider(
                           courseData[index]['image'].toString(),
                         ),
-                        // image: NetworkImage(
-                        //     "${courseData[index]['image'].toString()}"),
                       ),
                       color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(10)),
@@ -100,7 +98,7 @@ class TabCourse extends StatelessWidget {
               ),
               Text(
                 courseData[index]['title'].toString(),
-                style: Theme.of(context).textTheme.labelMedium,
+                style: Theme.of(context).primaryTextTheme.labelMedium,
               ),
             ],
           );
