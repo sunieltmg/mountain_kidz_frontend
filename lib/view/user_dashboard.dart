@@ -68,9 +68,25 @@ class UserDashboard extends StatelessWidget {
             padding: EdgeInsets.zero,
             children: [
               DrawerHeader(
-                child: Text(
-                  'technicalnepal31@gmail.com',
-                  style: Theme.of(context).primaryTextTheme.labelLarge,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image(
+                        image: AssetImage('assets/mountain_kidz_logo.png'),
+                        height: 80,
+                        width: 80,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Mountain Kidz & Daycare',
+                      style: Theme.of(context).primaryTextTheme.labelLarge,
+                    ),
+                  ],
                 ),
               ),
               ListTile(

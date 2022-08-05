@@ -9,6 +9,7 @@ import 'package:mountain_kidz_app/controller/login_controller.dart';
 import 'package:mountain_kidz_app/controller/register_controller.dart';
 import 'package:mountain_kidz_app/provider/theme_provider.dart';
 import 'package:mountain_kidz_app/services/light_dark_mode_service.dart';
+import 'package:mountain_kidz_app/view/changePassword.dart';
 import 'package:mountain_kidz_app/view/course/add_course.dart';
 import 'package:mountain_kidz_app/view/add_email.dart';
 import 'package:mountain_kidz_app/view/course/course_detail.dart';
@@ -119,6 +120,10 @@ class MountainKidz extends StatelessWidget {
         GetPage(
           name: '/updateUserProfile',
           page: () => UpdateUserProfile(),
+        ),
+        GetPage(
+          name: '/changePassword',
+          page: () => ChangePassword(),
         ),
       ],
     );

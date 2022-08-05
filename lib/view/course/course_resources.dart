@@ -78,38 +78,39 @@ class CourseResources extends StatelessWidget {
                         onPressed: () {
                           // print("Edit Notes button clicked");
                           showModalBottomSheet(
-                              context: context,
-                              builder: (context) {
-                                return Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    ListTile(
-                                      leading: new Icon(
-                                        Icons.edit_note,
-                                      ),
-                                      title: new Text('Edit Listing'),
-                                      onTap: () {
-                                        // Navigator.pop(
-                                        //     context);
-                                      },
+                            context: context,
+                            builder: (context) {
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  ListTile(
+                                    leading: new Icon(
+                                      Icons.edit_note,
                                     ),
-                                    ListTile(
-                                      leading: new Icon(Icons.delete),
-                                      title: new Text('Delete'),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                    ListTile(
-                                      leading: new Icon(Icons.remove_red_eye),
-                                      title: new Text('View Details'),
-                                      onTap: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ],
-                                );
-                              });
+                                    title: new Text('Edit Listing'),
+                                    onTap: () {
+                                      // Navigator.pop(
+                                      //     context);
+                                    },
+                                  ),
+                                  ListTile(
+                                    leading: new Icon(Icons.delete),
+                                    title: new Text('Delete'),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  ListTile(
+                                    leading: new Icon(Icons.remove_red_eye),
+                                    title: new Text('View Details'),
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
                         },
                         icon: Icon(
                           Icons.more_vert_outlined,

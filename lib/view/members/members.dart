@@ -100,18 +100,16 @@ class Member extends StatelessWidget {
     return SafeArea(
       child: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(bottom: 30),
+          padding: EdgeInsets.only(bottom: 30, top: 20),
           child: Wrap(
             children: [
               // Board Members
               Container(
-                padding: EdgeInsets.only(top: 30, bottom: 25),
-                child: Center(
-                  child: Text(
-                    'BOARD MEMBERS',
-                    style: TextStyle(
-                      color: Get.isDarkMode ? Colors.white60 : Colors.black54,
-                    ),
+                padding: EdgeInsets.only(top: 30, bottom: 25, left: 10),
+                child: Text(
+                  'BOARD MEMBERS',
+                  style: TextStyle(
+                    color: Get.isDarkMode ? Colors.white60 : Colors.black54,
                   ),
                 ),
               ),
@@ -119,7 +117,7 @@ class Member extends StatelessWidget {
                 height: 30,
               ),
               SizedBox(
-                height: 230,
+                height: 220,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: boardMembers.length,
@@ -137,19 +135,17 @@ class Member extends StatelessWidget {
               Divider(),
               // Teachers
               Container(
-                padding: EdgeInsets.only(top: 30, bottom: 25),
-                child: Center(
-                  child: Text(
-                    'TEACHERS',
-                    style: TextStyle(
-                      color: Get.isDarkMode ? Colors.white60 : Colors.black54,
-                    ),
+                padding: EdgeInsets.only(top: 30, bottom: 25, left: 10),
+                child: Text(
+                  'TEACHERS',
+                  style: TextStyle(
+                    color: Get.isDarkMode ? Colors.white60 : Colors.black54,
                   ),
                 ),
               ),
 
               SizedBox(
-                height: 230,
+                height: 220,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: teacherMembers.length,
@@ -171,13 +167,11 @@ class Member extends StatelessWidget {
               Divider(),
               //Staff
               Container(
-                padding: EdgeInsets.only(top: 30, bottom: 25),
-                child: Center(
-                  child: Text(
-                    'STAFF',
-                    style: TextStyle(
-                      color: Get.isDarkMode ? Colors.white60 : Colors.black54,
-                    ),
+                padding: EdgeInsets.only(top: 30, bottom: 25, left: 10),
+                child: Text(
+                  'STAFF',
+                  style: TextStyle(
+                    color: Get.isDarkMode ? Colors.white60 : Colors.black54,
                   ),
                 ),
               ),
@@ -186,7 +180,7 @@ class Member extends StatelessWidget {
                 height: 30,
               ),
               SizedBox(
-                height: 230,
+                height: 220,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: staffMembers.length,
@@ -228,110 +222,157 @@ class MembersWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.03),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      margin: EdgeInsets.only(
-        right: 8,
-      ),
-      padding: EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(5),
-            child: CachedNetworkImage(
-              key: UniqueKey(),
-              imageUrl: image,
-              height: 130,
-              width: 130,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const Image(
-                width: 25,
-                height: 25,
+    return GestureDetector(
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: new Icon(
+                    Icons.call,
+                  ),
+                  title: new Text('Call'),
+                  onTap: () async {
+                    const phoneNumber = '+9779863027050';
+                    const url = 'tel:$phoneNumber';
+
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      await launchUrl(
+                        Uri.parse(url),
+                        mode: LaunchMode.platformDefault,
+                      );
+                    }
+                  },
+                ),
+                ListTile(
+                  leading: new Icon(Icons.message),
+                  title: new Text('Message'),
+                  onTap: () async {
+                    const phoneNumber = '+9779863027050';
+                    const url = 'sms:$phoneNumber';
+
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      await launchUrl(
+                        Uri.parse(url),
+                        mode: LaunchMode.platformDefault,
+                      );
+                    }
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black.withOpacity(0.03),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        margin: EdgeInsets.only(
+          right: 8,
+        ),
+        padding: EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: CachedNetworkImage(
+                key: UniqueKey(),
+                imageUrl: image,
+                height: 130,
+                width: 130,
                 fit: BoxFit.cover,
-                image: AssetImage(
-                  'assets/loading.gif',
+                placeholder: (context, url) => const Image(
+                  width: 25,
+                  height: 25,
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    'assets/loading.gif',
+                  ),
                 ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.2,
-              height: 1.3,
-              color:
-                  Get.isDarkMode ? Colors.white : Colors.black.withOpacity(0.8),
+            SizedBox(
+              height: 10,
             ),
-          ),
-          Text(
-            description,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.2,
-              height: 1.3,
-              color: Get.isDarkMode ? Colors.white : Colors.black54,
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                letterSpacing: 0.2,
+                height: 1.3,
+                color: Get.isDarkMode
+                    ? Colors.white
+                    : Colors.black.withOpacity(0.8),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 18,
-          ),
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () async {
-                  const phoneNumber = '+9779863027050';
-                  const url = 'tel:$phoneNumber';
+            Text(
+              description,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 0.2,
+                height: 1.3,
+                color: Get.isDarkMode ? Colors.white : Colors.black54,
+              ),
+            ),
+            SizedBox(
+              height: 18,
+            ),
+            // Row(
+            //   children: [
+            //     GestureDetector(
+            //       onTap: () async {
+            //         const phoneNumber = '+9779863027050';
+            //         const url = 'tel:$phoneNumber';
 
-                  if (await canLaunchUrl(Uri.parse(url))) {
-                    await launchUrl(
-                      Uri.parse(url),
-                      mode: LaunchMode.platformDefault,
-                    );
-                  }
-                },
-                child: Image(
-                  color: Get.isDarkMode ? Colors.white30 : Colors.black54,
-                  image: AssetImage('assets/phone.png'),
-                  width: 17,
-                  height: 17,
-                ),
-              ),
-              SizedBox(
-                width: 25,
-              ),
-              GestureDetector(
-                onTap: () async {
-                  const phoneNumber = '+9779863027050';
-                  const url = 'sms:$phoneNumber';
+            //         if (await canLaunchUrl(Uri.parse(url))) {
+            //           await launchUrl(
+            //             Uri.parse(url),
+            //             mode: LaunchMode.platformDefault,
+            //           );
+            //         }
+            //       },
+            //       child: Image(
+            //         color: Get.isDarkMode ? Colors.white30 : Colors.black54,
+            //         image: AssetImage('assets/phone.png'),
+            //         width: 17,
+            //         height: 17,
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       width: 25,
+            //     ),
+            //     GestureDetector(
+            //       onTap: () async {
+            //         const phoneNumber = '+9779863027050';
+            //         const url = 'sms:$phoneNumber';
 
-                  if (await canLaunchUrl(Uri.parse(url))) {
-                    await launchUrl(
-                      Uri.parse(url),
-                      mode: LaunchMode.platformDefault,
-                    );
-                  }
-                },
-                child: Image(
-                  color: Get.isDarkMode ? Colors.white30 : Colors.black54,
-                  image: AssetImage('assets/comment.png'),
-                  width: 17,
-                  height: 17,
-                ),
-              ),
-            ],
-          ),
-        ],
+            //         if (await canLaunchUrl(Uri.parse(url))) {
+            //           await launchUrl(
+            //             Uri.parse(url),
+            //             mode: LaunchMode.platformDefault,
+            //           );
+            //         }
+            //       },
+            //       child: Image(
+            //         color: Get.isDarkMode ? Colors.white30 : Colors.black54,
+            //         image: AssetImage('assets/comment.png'),
+            //         width: 17,
+            //         height: 17,
+            //       ),
+            //     ),
+            //   ],
+            // ),
+          ],
+        ),
       ),
     );
   }
