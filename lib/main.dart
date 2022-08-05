@@ -9,9 +9,11 @@ import 'package:mountain_kidz_app/controller/login_controller.dart';
 import 'package:mountain_kidz_app/controller/register_controller.dart';
 import 'package:mountain_kidz_app/provider/theme_provider.dart';
 import 'package:mountain_kidz_app/services/light_dark_mode_service.dart';
-import 'package:mountain_kidz_app/view/add_course.dart';
+import 'package:mountain_kidz_app/view/course/add_course.dart';
 import 'package:mountain_kidz_app/view/add_email.dart';
+import 'package:mountain_kidz_app/view/course/course_detail.dart';
 import 'package:mountain_kidz_app/view/login_screen.dart';
+import 'package:mountain_kidz_app/view/members/members.dart';
 import 'package:mountain_kidz_app/view/on_boarding_screen/on_boarding_screen.dart';
 import 'package:mountain_kidz_app/view/register_screen.dart';
 import 'package:mountain_kidz_app/view/user_dashboard.dart';
@@ -35,7 +37,7 @@ class MountainKidz extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    String initialRoute = '/login';
+    String initialRoute = '/userDashboard';
 
     return GetMaterialApp(
       themeMode: ThemeService().getThemeMode(),
@@ -76,7 +78,18 @@ class MountainKidz extends StatelessWidget {
           name: '/userTabItem',
           page: () => const UserTabItem(),
         ),
-        GetPage(name: '/onBoardingScreen', page: () => OnBoardingScreen()),
+        GetPage(
+          name: '/courseDetail',
+          page: () => CourseDetail(),
+        ),
+        GetPage(
+          name: '/member',
+          page: () => Member(),
+        ),
+        GetPage(
+          name: '/onBoardingScreen',
+          page: () => OnBoardingScreen(),
+        ),
       ],
     );
   }

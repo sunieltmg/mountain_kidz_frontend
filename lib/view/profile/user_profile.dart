@@ -5,8 +5,18 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text('User Profile'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('title'),
+      ),
+      body: SafeArea(
+          child: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [],
+          ),
+        ),
+      )),
     );
   }
 }

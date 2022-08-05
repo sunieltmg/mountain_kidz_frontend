@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get/get.dart';
 
 class TabCourse extends StatelessWidget {
   TabCourse({Key? key}) : super(key: key);
@@ -8,37 +9,31 @@ class TabCourse extends StatelessWidget {
     {
       "title": "English",
       "image":
-          "https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
+          "https://img.freepik.com/free-vector/girl-read-books-white-background_1308-92010.jpg?w=360&t=st=1659536899~exp=1659537499~hmac=79f3baa3b613553264cc8f391323d83fa04a7a7cd6d5b46f22406644b2f10d88",
     },
     {
       "title": "Nepali",
-      "image":
-          "https://images.unsplash.com/photo-1588666309990-d68f08e3d4a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
+      "image": "https://pos.booksmandala.com/images/17397",
     },
     {
       "title": "Science",
       "image":
-          "https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
+          "https://img.freepik.com/free-vector/font-design-word-science-kids-with-boy-reading-book-background_1308-42373.jpg?t=st=1659537136~exp=1659537736~hmac=c2f6075cd067dbc3be58e4555863bd8ad5b6ab6ef8d0f08ebbe9f6d5e3472c41",
     },
     {
       "title": "Computer",
       "image":
-          "https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60",
+          "https://img.freepik.com/premium-vector/happy-cute-little-kid-boy-with-school-equipment_97632-2264.jpg?w=740",
     },
     {
       "title": "Math",
       "image":
-          "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60",
+          "https://img.freepik.com/free-vector/boy-counting-numbers-desk_1308-30971.jpg?w=360&t=st=1659537328~exp=1659537928~hmac=7cfcabe7f55719bea6e09869e50409a799d373269b8a56bc6edc128414e576c9",
     },
     {
       "title": "Social",
       "image":
-          "https://images.unsplash.com/photo-1546521343-4eb2c01aa44b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Ym9va3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60",
-    },
-    {
-      "title": "Vocational",
-      "image":
-          "https://images.unsplash.com/photo-1495640388908-05fa85288e61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
+          "https://img.freepik.com/free-vector/girl-study-home_1308-82193.jpg?w=740&t=st=1659537417~exp=1659538017~hmac=41245c5ebc5368fa81f0960c65112c1dcbf286d3a4fcf842f6e14aceeda0fdd2",
     },
   ];
 
@@ -82,18 +77,29 @@ class TabCourse extends StatelessWidget {
           return Column(
             children: [
               Expanded(
-                child: Container(
-                  margin: const EdgeInsets.only(bottom: 5),
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: CachedNetworkImageProvider(
-                          courseData[index]['image'].toString(),
+                child: InkWell(
+                  onTap: () => Get.offNamed('/courseDetail'),
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 5),
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.09),
+                            spreadRadius: 1,
+                            blurRadius: 2,
+                            offset: Offset(0, 1), // changes position of shadow
+                          ),
+                        ],
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: CachedNetworkImageProvider(
+                            courseData[index]['image'].toString(),
+                          ),
                         ),
-                      ),
-                      color: Colors.grey.shade100,
-                      borderRadius: BorderRadius.circular(10)),
+                        color: Colors.grey.shade100,
+                        borderRadius: BorderRadius.circular(10)),
+                  ),
                 ),
               ),
               Text(

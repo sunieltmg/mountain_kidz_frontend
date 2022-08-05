@@ -20,6 +20,13 @@ class MyThemes {
         fontSize: 18.0,
         height: 1.5,
       ),
+      titleMedium: TextStyle(
+        color: Colors.white.withOpacity(0.7),
+        letterSpacing: 1,
+        wordSpacing: 1,
+        fontSize: 16.0,
+        height: 1.5,
+      ),
       labelLarge: TextStyle(
         color: Colors.white.withOpacity(0.5),
         letterSpacing: 0.8,
@@ -34,7 +41,7 @@ class MyThemes {
         wordSpacing: 0.5,
         fontSize: 14.0,
         height: 1.5,
-        fontWeight: FontWeight.w200,
+        fontWeight: FontWeight.w400,
       ),
     ),
     appBarTheme: AppBarTheme(
@@ -72,6 +79,13 @@ class MyThemes {
         fontSize: 18.0,
         height: 1.5,
       ),
+      titleMedium: const TextStyle(
+        color: Colors.black,
+        letterSpacing: 1,
+        wordSpacing: 1,
+        fontSize: 16.0,
+        height: 1.5,
+      ),
       labelLarge: const TextStyle(
         color: Colors.black87,
         letterSpacing: 0.8,
@@ -81,12 +95,12 @@ class MyThemes {
         fontWeight: FontWeight.w300,
       ),
       labelMedium: const TextStyle(
-        color: Colors.black87,
+        color: Colors.black45,
         letterSpacing: 0.5,
         wordSpacing: 0.5,
         fontSize: 14.0,
         height: 1.5,
-        fontWeight: FontWeight.w200,
+        fontWeight: FontWeight.w400,
       ),
     ),
     iconTheme: IconThemeData(color: Colors.green.shade600, opacity: 0.8),

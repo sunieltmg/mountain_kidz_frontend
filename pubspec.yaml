@@ -39,6 +39,7 @@ dependencies:
   cached_network_image: ^3.2.0
   lottie: ^1.4.0
   get_storage: ^2.0.3
+  url_launcher: ^6.1.5
 
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:mountain_kidz_app/controller/bottom_navigation_controller.dart';
 import 'package:mountain_kidz_app/controller/dark_light_mode_controller.dart';
 import 'package:mountain_kidz_app/services/light_dark_mode_service.dart';
+import 'package:mountain_kidz_app/view/members/members.dart';
 import 'package:mountain_kidz_app/view/profile/user_profile.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_course.dart';
@@ -28,24 +29,37 @@ class UserDashboard extends StatelessWidget {
       () => Scaffold(
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
+            selectedLabelStyle: const TextStyle(
+              fontSize: 12,
+            ),
+            unselectedLabelStyle: const TextStyle(fontSize: 12),
             selectedItemColor: Theme.of(context).iconTheme.color,
             currentIndex: bottomNavigationController.currentIndex.value,
             onTap: (index) => bottomNavigationController.changeIndex(index),
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
+                  icon: Icon(
+                    Icons.home_outlined,
+                    size: 20,
+                  ),
                   label: 'Home',
                   activeIcon: Icon(Icons.home_filled)),
               // BottomNavigationBarItem(
               //     icon: Icon(Icons.notifications), label: 'Notice'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.tag_faces),
+                  icon: Icon(
+                    Icons.tag_faces_outlined,
+                    size: 20,
+                  ),
                   label: 'Explore',
-                  activeIcon: Icon(Icons.tag_faces_outlined)),
+                  activeIcon: Icon(Icons.tag_faces)),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
+                  icon: Icon(
+                    Icons.person_outline,
+                    size: 20,
+                  ),
                   label: 'Profile',
-                  activeIcon: Icon(Icons.person_outlined)),
+                  activeIcon: Icon(Icons.person)),
             ],
           ),
         ),
@@ -162,7 +176,7 @@ class userHome extends StatelessWidget {
                       child: Text('Results'),
                     ),
                     Tab(
-                      child: Text('Homework'),
+                      child: Text('Members'),
                     ),
                   ],
                   isScrollable: true,
@@ -174,7 +188,7 @@ class userHome extends StatelessWidget {
                       TabCourse(),
                       const TabAttendance(),
                       const TabResult(),
-                      const TabHomework(),
+                      Member(),
                     ],
                   ),
                 ),
