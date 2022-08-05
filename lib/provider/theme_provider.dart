@@ -95,7 +95,7 @@ class MyThemes {
         fontWeight: FontWeight.w300,
       ),
       labelMedium: const TextStyle(
-        color: Colors.black45,
+        color: Colors.black87,
         letterSpacing: 0.5,
         wordSpacing: 0.5,
         fontSize: 14.0,

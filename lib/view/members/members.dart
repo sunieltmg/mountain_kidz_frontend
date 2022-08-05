@@ -106,10 +106,12 @@ class Member extends StatelessWidget {
               // Board Members
               Container(
                 padding: EdgeInsets.only(top: 30, bottom: 25),
-                child: Text(
-                  'BOARD MEMBERS',
-                  style: TextStyle(
-                    color: Colors.black54,
+                child: Center(
+                  child: Text(
+                    'BOARD MEMBERS',
+                    style: TextStyle(
+                      color: Get.isDarkMode ? Colors.white60 : Colors.black54,
+                    ),
                   ),
                 ),
               ),
@@ -132,14 +134,16 @@ class Member extends StatelessWidget {
                       )),
                 ),
               ),
-
+              Divider(),
               // Teachers
               Container(
                 padding: EdgeInsets.only(top: 30, bottom: 25),
-                child: Text(
-                  'TEACHERS',
-                  style: TextStyle(
-                    color: Colors.black54,
+                child: Center(
+                  child: Text(
+                    'TEACHERS',
+                    style: TextStyle(
+                      color: Get.isDarkMode ? Colors.white60 : Colors.black54,
+                    ),
                   ),
                 ),
               ),
@@ -164,16 +168,20 @@ class Member extends StatelessWidget {
               SizedBox(
                 height: 50,
               ),
+              Divider(),
               //Staff
               Container(
                 padding: EdgeInsets.only(top: 30, bottom: 25),
-                child: Text(
-                  'STAFF',
-                  style: TextStyle(
-                    color: Colors.black54,
+                child: Center(
+                  child: Text(
+                    'STAFF',
+                    style: TextStyle(
+                      color: Get.isDarkMode ? Colors.white60 : Colors.black54,
+                    ),
                   ),
                 ),
               ),
+
               SizedBox(
                 height: 30,
               ),
@@ -226,7 +234,7 @@ class MembersWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       margin: EdgeInsets.only(
-        right: 3,
+        right: 8,
       ),
       padding: EdgeInsets.all(10),
       child: Column(
@@ -276,7 +284,7 @@ class MembersWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 18,
           ),
           Row(
             children: [

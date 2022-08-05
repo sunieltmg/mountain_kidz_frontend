@@ -12,10 +12,15 @@ import 'package:mountain_kidz_app/services/light_dark_mode_service.dart';
 import 'package:mountain_kidz_app/view/course/add_course.dart';
 import 'package:mountain_kidz_app/view/add_email.dart';
 import 'package:mountain_kidz_app/view/course/course_detail.dart';
+import 'package:mountain_kidz_app/view/faq.dart';
+import 'package:mountain_kidz_app/view/license_section.dart';
 import 'package:mountain_kidz_app/view/login_screen.dart';
 import 'package:mountain_kidz_app/view/members/members.dart';
 import 'package:mountain_kidz_app/view/on_boarding_screen/on_boarding_screen.dart';
+import 'package:mountain_kidz_app/view/privacy_policy.dart';
+import 'package:mountain_kidz_app/view/profile/user_profile.dart';
 import 'package:mountain_kidz_app/view/register_screen.dart';
+import 'package:mountain_kidz_app/view/terms_and_conditions.dart';
 import 'package:mountain_kidz_app/view/user_dashboard.dart';
 import 'package:mountain_kidz_app/view/tab_items/user_tab_item.dart';
 
@@ -89,6 +94,26 @@ class MountainKidz extends StatelessWidget {
         GetPage(
           name: '/onBoardingScreen',
           page: () => OnBoardingScreen(),
+        ),
+        GetPage(
+          name: '/terms&Conditions',
+          page: () => TermsAndCondition(),
+        ),
+        GetPage(
+          name: '/privacyPolicy',
+          page: () => PrivacyPolicy(),
+        ),
+        GetPage(
+          name: '/license',
+          page: () => LicenseSection(),
+        ),
+        GetPage(
+          name: '/faq',
+          page: () => Faq(),
+        ),
+        GetPage(
+          name: '/userProfile',
+          page: () => UserProfile(),
         ),
       ],
     );
