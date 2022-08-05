@@ -97,7 +97,9 @@ class TabCourse extends StatelessWidget {
                             courseData[index]['image'].toString(),
                           ),
                         ),
-                        color: Colors.grey.shade100,
+                        color: Get.isDarkMode
+                            ? Colors.black12
+                            : Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(10)),
                   ),
                 ),

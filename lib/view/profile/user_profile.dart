@@ -21,59 +21,65 @@ class UserProfile extends StatelessWidget {
             borderType: BorderType.Circle,
             radius: Radius.circular(12),
             color: Get.isDarkMode ? Colors.white38 : Colors.black38,
-            child: Container(
-              margin: EdgeInsets.only(top: 0),
-              padding: EdgeInsets.all(1),
-              decoration: BoxDecoration(shape: BoxShape.circle),
-              child: Column(children: [
-                Center(
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: CachedNetworkImage(
-                          key: UniqueKey(),
-                          imageUrl:
-                              "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60",
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => const Image(
-                            width: 25,
-                            height: 25,
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              'assets/loading.gif',
+            child: GestureDetector(
+              onTap: () => Get.toNamed('/updateUserProfile'),
+              child: Container(
+                margin: EdgeInsets.only(top: 0),
+                padding: EdgeInsets.all(1),
+                decoration: BoxDecoration(shape: BoxShape.circle),
+                child: Column(children: [
+                  Center(
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        GestureDetector(
+                          onTap: () => Get.offNamed('/updateUserProfile'),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(50),
+                            child: CachedNetworkImage(
+                              key: UniqueKey(),
+                              imageUrl:
+                                  "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60",
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => const Image(
+                                width: 25,
+                                height: 25,
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  'assets/loading.gif',
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                             ),
                           ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
                         ),
-                      ),
-                      Positioned(
-                        bottom: -10,
-                        right: 30,
-                        child: Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                            color: Get.isDarkMode
-                                ? Colors.purple.shade200
-                                : Colors.green.shade900,
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          child: const Icon(
-                            Icons.edit,
-                            color: Colors.white,
-                            size: 20,
+                        Positioned(
+                          bottom: -10,
+                          right: 30,
+                          child: Container(
+                            height: 30,
+                            width: 30,
+                            decoration: BoxDecoration(
+                              color: Get.isDarkMode
+                                  ? Colors.purple.shade200
+                                  : Colors.green.shade900,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: const Icon(
+                              Icons.edit,
+                              color: Colors.white,
+                              size: 20,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ]),
+                ]),
+              ),
             ),
           ),
           SizedBox(

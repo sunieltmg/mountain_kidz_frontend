@@ -74,9 +74,13 @@ class UserDashboard extends StatelessWidget {
                 ),
               ),
               ListTile(
-                trailing: const Padding(
+                trailing: Padding(
                   padding: EdgeInsets.only(right: 20),
-                  child: Icon(Icons.email),
+                  child: Icon(
+                    Icons.email,
+                    color:
+                        Get.isDarkMode ? Colors.purple.shade200 : Colors.green,
+                  ),
                 ),
                 title: const Text('Send Email'),
                 onTap: () => Get.toNamed("/addEmail", arguments: {
@@ -86,9 +90,13 @@ class UserDashboard extends StatelessWidget {
               ),
               ListTile(
                 title: const Text('Course'),
-                trailing: const Padding(
+                trailing: Padding(
                   padding: EdgeInsets.only(right: 20),
-                  child: Icon(Icons.book),
+                  child: Icon(
+                    Icons.book,
+                    color:
+                        Get.isDarkMode ? Colors.purple.shade200 : Colors.green,
+                  ),
                 ),
                 onTap: () {},
               ),

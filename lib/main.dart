@@ -18,6 +18,7 @@ import 'package:mountain_kidz_app/view/login_screen.dart';
 import 'package:mountain_kidz_app/view/members/members.dart';
 import 'package:mountain_kidz_app/view/on_boarding_screen/on_boarding_screen.dart';
 import 'package:mountain_kidz_app/view/privacy_policy.dart';
+import 'package:mountain_kidz_app/view/profile/update_user_profile.dart';
 import 'package:mountain_kidz_app/view/profile/user_profile.dart';
 import 'package:mountain_kidz_app/view/register_screen.dart';
 import 'package:mountain_kidz_app/view/terms_and_conditions.dart';
@@ -114,6 +115,10 @@ class MountainKidz extends StatelessWidget {
         GetPage(
           name: '/userProfile',
           page: () => UserProfile(),
+        ),
+        GetPage(
+          name: '/updateUserProfile',
+          page: () => UpdateUserProfile(),
         ),
       ],
     );
