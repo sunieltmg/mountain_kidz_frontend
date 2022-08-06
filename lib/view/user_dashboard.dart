@@ -178,7 +178,7 @@ class userHome extends StatelessWidget {
           ),
           const SizedBox(height: 35),
           DefaultTabController(
-            length: 2,
+            length: 3,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -196,6 +196,9 @@ class userHome extends StatelessWidget {
                     Tab(
                       child: Text('Members'),
                     ),
+                    Tab(
+                      child: Text('Attendance'),
+                    ),
                   ],
                   isScrollable: true,
                 ),
@@ -205,6 +208,7 @@ class userHome extends StatelessWidget {
                     children: [
                       TabCourse(),
                       Member(),
+                      TabAttendance(),
                     ],
                   ),
                 ),

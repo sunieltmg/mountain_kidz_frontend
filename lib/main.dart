@@ -22,6 +22,7 @@ import 'package:mountain_kidz_app/view/privacy_policy.dart';
 import 'package:mountain_kidz_app/view/profile/update_user_profile.dart';
 import 'package:mountain_kidz_app/view/profile/user_profile.dart';
 import 'package:mountain_kidz_app/view/register_screen.dart';
+import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
 import 'package:mountain_kidz_app/view/terms_and_conditions.dart';
 import 'package:mountain_kidz_app/view/user_dashboard.dart';
 import 'package:mountain_kidz_app/view/tab_items/user_tab_item.dart';
@@ -130,6 +131,10 @@ class MountainKidz extends StatelessWidget {
         GetPage(
           name: '/changePassword',
           page: () => ChangePassword(),
+        ),
+        GetPage(
+          name: '/attendance',
+          page: () => TabAttendance(),
         ),
       ],
     );
