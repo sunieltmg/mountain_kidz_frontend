@@ -60,6 +60,8 @@ class CourseDetail extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
                   placeholder: (context, url) => const Image(
+                    width: 25,
+                    height: 25,
                     fit: BoxFit.cover,
                     image: AssetImage(
                       'assets/loading.gif',

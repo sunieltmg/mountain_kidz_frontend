@@ -27,6 +27,12 @@ import 'package:mountain_kidz_app/view/user_dashboard.dart';
 import 'package:mountain_kidz_app/view/tab_items/user_tab_item.dart';
 
 void main() async {
+  // to disable landscape orientation
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   await GetStorage.init();
   runApp(MountainKidz());
 }

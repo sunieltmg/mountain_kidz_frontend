@@ -117,7 +117,7 @@ class Member extends StatelessWidget {
                 height: 30,
               ),
               SizedBox(
-                height: 220,
+                height: 215,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: boardMembers.length,
@@ -135,7 +135,7 @@ class Member extends StatelessWidget {
               Divider(),
               // Teachers
               Container(
-                padding: EdgeInsets.only(top: 30, bottom: 25, left: 10),
+                padding: EdgeInsets.only(top: 30, bottom: 5, left: 10),
                 child: Text(
                   'TEACHERS',
                   style: TextStyle(
@@ -145,7 +145,7 @@ class Member extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 220,
+                height: 215,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: teacherMembers.length,
@@ -180,7 +180,7 @@ class Member extends StatelessWidget {
                 height: 30,
               ),
               SizedBox(
-                height: 220,
+                height: 215,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: staffMembers.length,
