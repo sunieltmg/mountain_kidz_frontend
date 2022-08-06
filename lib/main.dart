@@ -26,6 +26,7 @@ import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
 import 'package:mountain_kidz_app/view/terms_and_conditions.dart';
 import 'package:mountain_kidz_app/view/user_dashboard.dart';
 import 'package:mountain_kidz_app/view/tab_items/user_tab_item.dart';
+import 'package:mountain_kidz_app/view/view_calender.dart';
 
 void main() async {
   // to disable landscape orientation
@@ -135,6 +136,10 @@ class MountainKidz extends StatelessWidget {
         GetPage(
           name: '/attendance',
           page: () => TabAttendance(),
+        ),
+        GetPage(
+          name: '/calender',
+          page: () => ViewCalender(),
         ),
       ],
     );

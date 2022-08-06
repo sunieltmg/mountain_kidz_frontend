@@ -10,6 +10,7 @@ import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_course.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_homework.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_result.dart';
+import 'package:mountain_kidz_app/view/view_calender.dart';
 
 class UserDashboard extends StatelessWidget {
   UserDashboard({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class UserDashboard extends StatelessWidget {
   BottomNavigationController bottomNavigationController = Get.find();
   final screens = [
     const userHome(),
-    const Text('Explore'),
+    const ViewCalender(),
     const UserProfile(),
   ];
 
@@ -47,12 +48,16 @@ class UserDashboard extends StatelessWidget {
               // BottomNavigationBarItem(
               //     icon: Icon(Icons.notifications), label: 'Notice'),
               BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.tag_faces_outlined,
-                    size: 20,
-                  ),
-                  label: 'Explore',
-                  activeIcon: Icon(Icons.tag_faces)),
+                icon: Icon(
+                  Icons.calendar_view_month,
+                  size: 20,
+                ),
+                label: 'Calender',
+                activeIcon: Icon(
+                  Icons.calendar_view_month_outlined,
+                  size: 20,
+                ),
+              ),
               BottomNavigationBarItem(
                   icon: Icon(
                     Icons.person_outline,

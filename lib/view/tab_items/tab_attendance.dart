@@ -45,7 +45,7 @@ class TabAttendance extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
               color: Get.isDarkMode
                   ? Colors.purple.shade400
-                  : Colors.green.shade100,
+                  : Colors.green.shade800,
             ),
             child: Row(children: [
               Column(
@@ -58,7 +58,7 @@ class TabAttendance extends StatelessWidget {
                       letterSpacing: 0.5,
                       fontWeight: FontWeight.w500,
                       height: 1.3,
-                      color: Get.isDarkMode ? Colors.white : Colors.black87,
+                      color: Get.isDarkMode ? Colors.white : Colors.white,
                     ),
                   ),
                   SizedBox(
@@ -71,7 +71,7 @@ class TabAttendance extends StatelessWidget {
                       letterSpacing: 0.5,
                       fontWeight: FontWeight.w300,
                       height: 1.3,
-                      color: Get.isDarkMode ? Colors.white70 : Colors.black87,
+                      color: Get.isDarkMode ? Colors.white70 : Colors.white,
                     ),
                   ),
                 ],
@@ -87,7 +87,7 @@ class TabAttendance extends StatelessWidget {
                       letterSpacing: 0.5,
                       fontWeight: FontWeight.w500,
                       height: 1.3,
-                      color: Get.isDarkMode ? Colors.white : Colors.black87,
+                      color: Get.isDarkMode ? Colors.white : Colors.white,
                     ),
                   ),
                   SizedBox(
@@ -100,7 +100,7 @@ class TabAttendance extends StatelessWidget {
                       letterSpacing: 0.5,
                       fontWeight: FontWeight.w300,
                       height: 1.3,
-                      color: Get.isDarkMode ? Colors.white70 : Colors.black87,
+                      color: Get.isDarkMode ? Colors.white70 : Colors.white,
                     ),
                   ),
                 ],
@@ -116,7 +116,7 @@ class TabAttendance extends StatelessWidget {
                       letterSpacing: 0.5,
                       fontWeight: FontWeight.w500,
                       height: 1.3,
-                      color: Get.isDarkMode ? Colors.white : Colors.black87,
+                      color: Get.isDarkMode ? Colors.white : Colors.white,
                     ),
                   ),
                   SizedBox(
@@ -129,7 +129,7 @@ class TabAttendance extends StatelessWidget {
                       letterSpacing: 0.5,
                       fontWeight: FontWeight.w300,
                       height: 1.3,
-                      color: Get.isDarkMode ? Colors.white70 : Colors.black87,
+                      color: Get.isDarkMode ? Colors.white70 : Colors.white,
                     ),
                   ),
                 ],
