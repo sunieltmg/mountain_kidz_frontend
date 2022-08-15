@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:mountain_kidz_app/controller/course_controller.dart';
+import 'package:mountain_kidz_app/provider/message_provider.dart';
 
 class AddCourse extends StatelessWidget {
   AddCourse({Key? key}) : super(key: key);
   TextEditingController nameController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
   TextEditingController imageController = TextEditingController();
+
+  CourseController courseController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -132,8 +136,25 @@ class AddCourse extends StatelessWidget {
                           ? Colors.purple.shade200
                           : Colors.green,
                       minimumSize: const Size(400, 40)),
-                  onPressed: () {},
-                  child: const Text('UPDATE'),
+                  onPressed: () async {
+                    final Map<String, String> data = {
+                      "title": nameController.text,
+                      "description": descriptionController.text,
+                      "image": imageController.text
+                    };
+                    final response = await courseController.addCourse(data);
+                    if (response == 'Course created successfully') {
+                      MessageProvider.successMessage(
+                          'Success', 'Course created successfully');
+                    } else if (response == 'course already exists') {
+                      MessageProvider.errorMessage(
+                          'Error', 'Course already exists');
+                    } else {
+                      MessageProvider.errorMessage(
+                          'Error', 'Internal Server Error');
+                    }
+                  },
+                  child: const Text('ADD'),
                 ),
               )
             ],
@@ -143,4 +164,3 @@ class AddCourse extends StatelessWidget {
     );
   }
 }
-

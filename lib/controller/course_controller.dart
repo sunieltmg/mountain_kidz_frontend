@@ -26,8 +26,9 @@ class CourseController extends GetxController {
   }
 
   // add single food
-  addCourse() async {
-    var response = courseService.addCourse();
+  addCourse(Map<String, String> data) async {
+    var response = courseService.addCourse(data);
+    print(response);
     return response;
   }
 
