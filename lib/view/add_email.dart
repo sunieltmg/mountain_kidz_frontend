@@ -21,7 +21,7 @@ class AddEmail extends StatelessWidget {
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: () => Get.offNamed('/userDashboard'),
+            onPressed: () => Get.offNamed('/adminDashboard'),
           ),
           centerTitle: true,
           title: Text(

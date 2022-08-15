@@ -3,14 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mountain_kidz_app/controller/bottom_navigation_controller.dart';
+import 'package:mountain_kidz_app/controller/course_controller.dart';
 import 'package:mountain_kidz_app/controller/dark_light_mode_controller.dart';
 import 'package:mountain_kidz_app/controller/email_js_controller.dart';
 import 'package:mountain_kidz_app/controller/login_controller.dart';
 import 'package:mountain_kidz_app/controller/register_controller.dart';
 import 'package:mountain_kidz_app/provider/theme_provider.dart';
 import 'package:mountain_kidz_app/services/light_dark_mode_service.dart';
+import 'package:mountain_kidz_app/view/admin/update_course.dart';
+import 'package:mountain_kidz_app/view/admin_dashboard.dart';
 import 'package:mountain_kidz_app/view/changePassword.dart';
-import 'package:mountain_kidz_app/view/course/add_course.dart';
+import 'package:mountain_kidz_app/view/admin/add_course.dart';
 import 'package:mountain_kidz_app/view/add_email.dart';
 import 'package:mountain_kidz_app/view/course/course_detail.dart';
 import 'package:mountain_kidz_app/view/faq.dart';
@@ -27,6 +30,7 @@ import 'package:mountain_kidz_app/view/terms_and_conditions.dart';
 import 'package:mountain_kidz_app/view/user_dashboard.dart';
 import 'package:mountain_kidz_app/view/tab_items/user_tab_item.dart';
 import 'package:mountain_kidz_app/view/view_calender.dart';
+import 'package:mountain_kidz_app/view/pdf/view_invoice.dart';
 
 void main() async {
   // to disable landscape orientation
@@ -43,6 +47,8 @@ class MountainKidz extends StatelessWidget {
   MountainKidz({Key? key}) : super(key: key);
   final BottomNavigationController bottomNavigationController =
       Get.put(BottomNavigationController());
+  final CourseController courseController =
+      Get.put(CourseController());
 
   final DarkLightModeController darkLightModeController =
       Get.put(DarkLightModeController());
@@ -52,7 +58,7 @@ class MountainKidz extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    String initialRoute = '/userDashboard';
+    String initialRoute = '/adminDashboard';
 
     return GetMaterialApp(
       themeMode: ThemeService().getThemeMode(),
@@ -75,7 +81,7 @@ class MountainKidz extends StatelessWidget {
         ),
         GetPage(
           name: '/addCourse',
-          page: () => const AddCourse(),
+          page: () => AddCourse(),
         ),
         GetPage(
             name: '/login',
@@ -141,6 +147,18 @@ class MountainKidz extends StatelessWidget {
           name: '/calender',
           page: () => ViewCalender(),
         ),
+        GetPage(
+          name: '/adminDashboard',
+          page: () => AdminDashboard(),
+        ),
+        GetPage(
+          name: '/updateCourse',
+          page: () => UpdateCourse(),
+        ),
+        // GetPage(
+        //   name: '/invoice',
+        //   page: () => ViewInvoice(),
+        // ),
       ],
     );
   }
