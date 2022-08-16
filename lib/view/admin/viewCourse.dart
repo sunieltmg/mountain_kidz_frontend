@@ -30,27 +30,30 @@ class ViewCourse extends StatelessWidget {
 
         // search bar
         Container(
-          padding: const EdgeInsets.only(
-            left: 10,
-          ),
-          margin: EdgeInsets.only(
-              bottom: searchController.text.isEmpty ? 0 : 10,
-              left: 20,
-              right: 20),
+          margin: EdgeInsets.only(bottom: 10, left: 20, right: 20),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
             color: Colors.black.withOpacity(0.03),
           ),
           child: TextFormField(
+            style: TextStyle(
+                color: Get.isDarkMode
+                    ? Colors.white.withOpacity(0.5)
+                    : Colors.black),
             controller: searchController,
             decoration: InputDecoration(
+              filled: true,
+              fillColor: Get.isDarkMode
+                  ? Colors.white.withOpacity(0.08)
+                  : Colors.black.withOpacity(0.02),
               contentPadding:
-                  EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               hintText: 'Search',
               suffixIcon: IconButton(
                 icon: Icon(
                   Icons.search,
-                  color: Colors.black26,
+                  color: Get.isDarkMode
+                      ? Colors.white.withOpacity(0.8)
+                      : Colors.black26,
                 ),
                 onPressed: () => courseController.searchCourse(),
               ),
@@ -63,121 +66,116 @@ class ViewCourse extends StatelessWidget {
         ),
 
         // course list
-        SizedBox(
-          height: 400,
+        Container(
+          padding: EdgeInsets.only(bottom: 50),
+          margin: EdgeInsets.only(bottom: 50),
+          height: 500,
           child: Obx(
             () => ListView.builder(
               itemCount: courseController.courseList.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                    width: 355,
-                    margin: EdgeInsets.only(
-                      top: 20,
-                      left: 5,
-                      right: 5,
-                      bottom: 8,
-                    ),
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 5,
-                          offset: Offset(0, 3), // changes position of shadow
-                          color: Color(0xFFB0CCE1).withOpacity(0.32),
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.white,
-                    ),
-                    child: ListTile(
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Switch(
-                            value:
-                                courseController.courseList[index].isAvailable,
-                            onChanged: (value) {
-                              if (!value) {
-                                var response =
-                                    courseController.setCourseUnavailable();
-                              } else {
-                                courseController.setCourseAvailable();
-                              }
-                            },
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () =>
-                                Get.toNamed('/updateCourse', arguments: [
-                              {"id": courseController.courseList[index].id},
-                              {"name": courseController.courseList[index].name},
-                              {
-                                "price":
-                                    courseController.courseList[index].price
-                              },
-                              {
-                                "description": courseController
-                                    .courseList[index].description
-                              },
-                              {
-                                "image":
-                                    courseController.courseList[index].image
-                              },
-                            ]),
-                            child: Image(
-                              image: AssetImage('assets/images/edit.png'),
-                              width: 25,
-                              height: 25,
-                              color: Colors.green,
-                            ),
-                          ),
-                        ],
+                  width: 355,
+                  margin: const EdgeInsets.only(
+                    top: 30,
+                    left: 5,
+                    right: 5,
+                    bottom: 8,
+                  ),
+                  padding: const EdgeInsets.only(
+                      top: 10, bottom: 10, left: 40, right: 40),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 5,
+                        offset: Offset(0, 3), // changes position of shadow
+                        color: Get.isDarkMode
+                            ? Color(0xFF323634).withOpacity(0.32)
+                            : Color(0xFFf5faf6).withOpacity(0.32),
                       ),
-                      leading: GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () =>
-                            Get.toNamed('/adminFoodDetail', arguments: [
-                          {"id": courseController.courseList[index].id},
-                          {"name": courseController.courseList[index].name},
-                          {"price": courseController.courseList[index].price},
-                          {
-                            "description":
-                                courseController.courseList[index].description
-                          },
-                          {"image": courseController.courseList[index].image},
-                        ]),
-                        child: Container(
-                          width: 48,
-                          height: 48,
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          alignment: Alignment.center,
-                          child: CircleAvatar(
-                            radius: 200.0,
-                            child: SizedBox(
-                              height: 120,
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl:
-                                    'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-                                placeholder: (context, url) => Image(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                      'assets/images/loading.gif',
-                                    )),
-                                errorWidget: (context, url, error) =>
-                                    Icon(Icons.error),
+                    ],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CachedNetworkImage(
+                        width: 250,
+                        height: 200,
+                        fit: BoxFit.cover,
+                        imageUrl: courseController.courseList[index].image,
+                        placeholder: (context, url) => ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: const Image(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                'assets/loading.gif',
+                              )),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 5.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              courseController.courseList[index].title,
+                              style: TextStyle(
+                                color: Get.isDarkMode
+                                    ? Colors.white
+                                    : Colors.black87,
+                                fontSize: 13.0,
+                                height: 1.3,
+                                letterSpacing: 0.8,
                               ),
                             ),
-                          ),
+                            IconButton(
+                              onPressed: () {
+                                Get.toNamed('/updateCourse', arguments: [
+                                  {
+                                    "title":
+                                        courseController.courseList[index].title
+                                  },
+                                  {
+                                    "description": courseController
+                                        .courseList[index].description
+                                  },
+                                  {
+                                    "image":
+                                        courseController.courseList[index].image
+                                  },
+                                  {"id": courseController.courseList[index].id},
+                                ]);
+                              },
+                              icon: Icon(Icons.edit),
+                            ),
+                          ],
                         ),
                       ),
-                      title: Text(courseController.courseList[index].name),
-                      subtitle: Text('Rs : ' +
-                          courseController.courseList[index].price.toString()),
-                      dense: false,
-                    ));
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Text(
+                        courseController.courseList[index].description,
+                        style: TextStyle(
+                          color:
+                              Get.isDarkMode ? Colors.white60 : Colors.black54,
+                          fontSize: 13.0,
+                          height: 1.3,
+                          letterSpacing: 0.8,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                    ],
+                  ),
+                );
               },
             ),
           ),

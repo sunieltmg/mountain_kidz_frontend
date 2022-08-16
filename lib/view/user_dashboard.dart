@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:mountain_kidz_app/controller/bottom_navigation_controller.dart';
+import 'package:mountain_kidz_app/controller/course_controller.dart';
 import 'package:mountain_kidz_app/controller/dark_light_mode_controller.dart';
 import 'package:mountain_kidz_app/services/light_dark_mode_service.dart';
 import 'package:mountain_kidz_app/view/members/members.dart';

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
+import 'package:mountain_kidz_app/controller/course_controller.dart';
+import 'package:mountain_kidz_app/provider/message_provider.dart';
 
 class UpdateCourse extends StatelessWidget {
   UpdateCourse({Key? key}) : super(key: key);
-  TextEditingController nameController = TextEditingController();
-  TextEditingController descriptionController = TextEditingController();
-  TextEditingController imageController = TextEditingController();
+  List data = Get.arguments;
+  CourseController courseController = Get.find();
+
+  late final TextEditingController nameController =
+      TextEditingController(text: data[0]['title']);
+  late final TextEditingController descriptionController =
+      TextEditingController(text: data[1]['description']);
+  late final TextEditingController imageController =
+      TextEditingController(text: data[2]['image']);
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +140,29 @@ class UpdateCourse extends StatelessWidget {
                           ? Colors.purple.shade200
                           : Colors.green,
                       minimumSize: const Size(400, 40)),
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (nameController.text == "" ||
+                        descriptionController.text == "" ||
+                        imageController.text == "") {
+                      MessageProvider.errorMessage(
+                          'Error', 'All fields are required');
+                    } else {
+                      final Map<String, String> dataInfo = {
+                        "title": nameController.text,
+                        "description": descriptionController.text,
+                        "image": imageController.text,
+                      };
+                      final response = await courseController.UpdateCourse(
+                          dataInfo, data[3]['id']);
+                      if (response == 'Course updated successfully') {
+                        MessageProvider.successMessage(
+                            'Success', 'Course updated successfully');
+                      } else {
+                        MessageProvider.errorMessage(
+                            'Error', 'Internal Server Error');
+                      }
+                    }
+                  },
                   child: const Text('UPDATE'),
                 ),
               )

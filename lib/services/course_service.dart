@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import "package:http/http.dart" as http;
+import 'package:mountain_kidz_app/model/course_model.dart';
 
 class CourseService {
   // add course
@@ -18,8 +19,6 @@ class CourseService {
         body: json.encode(data),
       );
 
-      print(response.statusCode);
-
       if (response.statusCode == 201) {
         return 'Course created successfully';
       } else if (response.statusCode == 400) {
@@ -33,26 +32,48 @@ class CourseService {
   }
 
   // to get all course
-  getAllCourse() {
-    // String endpoint = '';
-    // try {
-    //   final response = await PersistentHtpp.client.get(Uri.parse(endpoint));
-    //   final stringData = response.body;
-    //   if (response.statusCode == 200) {
-    //     return foodFromJson(stringData);
-    //   } else {
-    //     return Future.error('Internal Server Error');
-    //   }
-    // } catch (err) {
-    //   return Future.error(' Error fetching data $err');
-    // }
+  Future getAllCourse() async {
+    String endpoint = 'https://mountain-kidz.herokuapp.com/course';
+
+    try {
+      final response = await client.get(
+        Uri.parse(endpoint),
+      );
+      final stringData = response.body;
+      if (response.statusCode == 200) {
+        return courseFromJson(stringData);
+      } else {
+        return Future.error('Internal Server Error');
+      }
+    } catch (err) {
+      return Future.error(' Error fetching data $err');
+    }
   }
 
   // get single course
   getSingleCourse() {}
 
   // update single course
-  updateCourse() {}
+  Future updateCourse(Map<String, String> data, String id) async {
+    String endpoint = 'https://mountain-kidz.herokuapp.com/course/$id';
+    try {
+      final response = await client.put(
+        Uri.parse(endpoint),
+        body: jsonEncode(data),
+        headers: {
+          "Content-Type": "application/json; charset=UTF-8",
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return 'Course updated successfully';
+      } else {
+        return 'Internal Server Error';
+      }
+    } catch (err) {
+      return Future.error(err);
+    }
+  }
 
   // set course available
   setCourseAvailable() {}

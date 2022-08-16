@@ -11,12 +11,13 @@ class CourseController extends GetxController {
 
   @override
   void onInit() {
+    getAllCourse();
     super.onInit();
   }
 
   CourseService courseService = Get.put(CourseService());
 
-  // get all food
+  // get all course
   getAllCourse() async {
     var data = await courseService.getAllCourse();
     if (data != null) {
@@ -25,16 +26,16 @@ class CourseController extends GetxController {
     }
   }
 
-  // add single food
+  // add single course
   addCourse(Map<String, String> data) async {
-    var response = courseService.addCourse(data);
-    print(response);
+    var response = await courseService.addCourse(data);
+    await getAllCourse();
     return response;
   }
 
   // update single food
-  UpdateCourse() async {
-    var response = courseService.updateCourse();
+  UpdateCourse(Map<String, String> data, String id) async {
+    var response = courseService.updateCourse(data, id);
     return response;
   }
 
