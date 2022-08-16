@@ -142,16 +142,24 @@ class AddCourse extends StatelessWidget {
                       "description": descriptionController.text,
                       "image": imageController.text
                     };
-                    final response = await courseController.addCourse(data);
-                    if (response == 'Course created successfully') {
-                      MessageProvider.successMessage(
-                          'Success', 'Course created successfully');
-                    } else if (response == 'course already exists') {
+
+                    if (nameController.text == "" ||
+                        descriptionController.text == "" ||
+                        imageController.text == "") {
                       MessageProvider.errorMessage(
-                          'Error', 'Course already exists');
+                          'Error', 'All fields are required');
                     } else {
-                      MessageProvider.errorMessage(
-                          'Error', 'Internal Server Error');
+                      final response = await courseController.addCourse(data);
+                      if (response == 'Course created successfully') {
+                        MessageProvider.successMessage(
+                            'Success', 'Course created successfully');
+                      } else if (response == 'course already exists') {
+                        MessageProvider.errorMessage(
+                            'Error', 'Course already exists');
+                      } else {
+                        MessageProvider.errorMessage(
+                            'Error', 'Internal Server Error');
+                      }
                     }
                   },
                   child: const Text('ADD'),
