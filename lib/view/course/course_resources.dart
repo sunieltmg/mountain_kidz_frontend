@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CourseResources extends StatelessWidget {
   CourseResources({Key? key}) : super(key: key);
@@ -85,26 +87,29 @@ class CourseResources extends StatelessWidget {
                                 children: <Widget>[
                                   ListTile(
                                     leading: new Icon(
-                                      Icons.edit_note,
+                                      Icons.remove_red_eye,
                                     ),
-                                    title: new Text('Edit Listing'),
-                                    onTap: () {
-                                      // Navigator.pop(
-                                      //     context);
-                                    },
-                                  ),
-                                  ListTile(
-                                    leading: new Icon(Icons.delete),
-                                    title: new Text('Delete'),
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    },
-                                  ),
-                                  ListTile(
-                                    leading: new Icon(Icons.remove_red_eye),
                                     title: new Text('View Details'),
-                                    onTap: () {
-                                      Navigator.pop(context);
+                                    onTap: () async {
+                                      const url =
+                                          "https://drive.google.com/file/d/1ya4p1qu9Wk6pSBuU2nXezclUGjcRBVNz/view?usp=sharing";
+
+                                      if (await canLaunchUrl(Uri.parse(url))) {
+                                        await launchUrl(
+                                          Uri.parse(url),
+                                          mode: LaunchMode.platformDefault,
+                                        );
+                                      }
+                                    },
+                                  ),
+                                  ListTile(
+                                    leading: new Icon(Icons.share),
+                                    title: new Text('Share'),
+                                    onTap: () async {
+                                      final urlPreview =
+                                          'https://drive.google.com/file/d/1ya4p1qu9Wk6pSBuU2nXezclUGjcRBVNz/view?usp=sharing';
+                                      await Share.share(
+                                          'check out $urlPreview');
                                     },
                                   ),
                                 ],

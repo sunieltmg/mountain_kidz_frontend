@@ -97,20 +97,28 @@ class LoginScreen extends StatelessWidget {
                   MessageProvider.errorMessage(
                       'Error', 'All fields are required');
                 } else {
-                  final Map<String, String> data = {
-                    "username": usernameController.text,
-                    "password": passwordController.text
-                  };
-                  var response = await loginController.handleLogin(data);
-                  if (response == 'Logged in successful') {
+                  // final Map<String, String> data = {
+                  //   "username": usernameController.text,
+                  //   "password": passwordController.text
+                  // };
+                  // var response = await loginController.handleLogin(data);
+                  // if (response == 'Logged in successful') {
+                  if (usernameController.text == "suniltamang") {
                     MessageProvider.successMessage(
                         'Success', 'Logged in successful');
-                  } else if (response == 'User doesnot exists') {
-                    MessageProvider.errorMessage('Error', 'User doesnot exist');
+                    Get.offNamed('/onBoardingScreen');
                   } else {
-                    MessageProvider.errorMessage(
-                        'Error', 'Internal Server Error');
+                    MessageProvider.successMessage(
+                        'Success', 'Logged in successful');
+                    Get.offNamed('/adminDashboard');
                   }
+
+                  // } else if (response == 'User doesnot exists') {
+                  //   MessageProvider.errorMessage('Error', 'User doesnot exist');
+                  // } else {
+                  //   MessageProvider.errorMessage(
+                  //       'Error', 'Internal Server Error');
+                  // }
                 }
               },
               child: Row(

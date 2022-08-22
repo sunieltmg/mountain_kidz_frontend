@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:get/get.dart';
+import 'package:mountain_kidz_app/controller/course_controller.dart';
 import 'package:mountain_kidz_app/view/course/course_resources.dart';
+import 'package:mountain_kidz_app/view/quiz/quiz.dart';
+import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CourseDetail extends StatelessWidget {
@@ -14,6 +17,9 @@ class CourseDetail extends StatelessWidget {
       throw 'Could not launch $_url';
     }
   }
+
+  List data = Get.arguments;
+  CourseController courseController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class CourseDetail extends StatelessWidget {
           onPressed: () => Get.offNamed('/userDashboard'),
         ),
         title: Text(
-          'English',
+          data[0]['title'],
           style: Theme.of(context).primaryTextTheme.titleMedium,
         ),
       ),
@@ -54,8 +60,7 @@ class CourseDetail extends StatelessWidget {
               Stack(clipBehavior: Clip.none, children: [
                 CachedNetworkImage(
                   key: UniqueKey(),
-                  imageUrl:
-                      "https://images.unsplash.com/flagged/photo-1551887373-6edba6dacbb1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGVuZ2xpc2h8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60",
+                  imageUrl: data[2]['image'],
                   height: 250,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
@@ -102,7 +107,7 @@ class CourseDetail extends StatelessWidget {
                   left: 20,
                 ),
                 child: Text(
-                  'Effective Communication',
+                  data[0]['title'],
                   style: TextStyle(
                       fontSize: 18,
                       height: 1.5,
@@ -118,9 +123,9 @@ class CourseDetail extends StatelessWidget {
               // course description
 
               Padding(
-                padding: const EdgeInsets.only(top: 5, left: 20),
+                padding: const EdgeInsets.only(top: 5, left: 20, right: 10),
                 child: Text(
-                  'Effective communication is the process of exchanging ideas, thoughts, opinions, knowledge, and data so that the message is received and understood with clarity and purpose.',
+                  data[1]['description'],
                   style: TextStyle(
                       fontSize: 14,
                       height: 1.5,
@@ -176,7 +181,7 @@ class CourseDetail extends StatelessWidget {
               ),
 
               DefaultTabController(
-                length: 4,
+                length: 3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -192,9 +197,6 @@ class CourseDetail extends StatelessWidget {
                           child: Text('Resources'),
                         ),
                         Tab(
-                          child: Text('Assignment'),
-                        ),
-                        Tab(
                           child: Text('Attendance'),
                         ),
                         Tab(
@@ -208,9 +210,14 @@ class CourseDetail extends StatelessWidget {
                       child: TabBarView(
                         children: [
                           CourseResources(),
-                          Text('hello '),
-                          Text('hello '),
-                          Text('hello '),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: TabAttendance(),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Quiz(),
+                          ),
                         ],
                       ),
                     ),

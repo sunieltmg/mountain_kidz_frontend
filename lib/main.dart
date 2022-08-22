@@ -24,6 +24,15 @@ import 'package:mountain_kidz_app/view/on_boarding_screen/on_boarding_screen.dar
 import 'package:mountain_kidz_app/view/privacy_policy.dart';
 import 'package:mountain_kidz_app/view/profile/update_user_profile.dart';
 import 'package:mountain_kidz_app/view/profile/user_profile.dart';
+import 'package:mountain_kidz_app/view/quiz/leaderboard.dart';
+import 'package:mountain_kidz_app/view/quiz/quiz.dart';
+import 'package:mountain_kidz_app/view/quiz/quiz1.dart';
+import 'package:mountain_kidz_app/view/quiz/quiz2.dart';
+import 'package:mountain_kidz_app/view/quiz/quiz3.dart';
+import 'package:mountain_kidz_app/view/quiz/quiz4.dart';
+import 'package:mountain_kidz_app/view/quiz/quiz5.dart';
+import 'package:mountain_kidz_app/view/quiz/quizLuck.dart';
+import 'package:mountain_kidz_app/view/quiz/quiz_completed.dart';
 import 'package:mountain_kidz_app/view/register_screen.dart';
 import 'package:mountain_kidz_app/view/tab_items/tab_attendance.dart';
 import 'package:mountain_kidz_app/view/terms_and_conditions.dart';
@@ -47,8 +56,7 @@ class MountainKidz extends StatelessWidget {
   MountainKidz({Key? key}) : super(key: key);
   final BottomNavigationController bottomNavigationController =
       Get.put(BottomNavigationController());
-  final CourseController courseController =
-      Get.put(CourseController());
+  final CourseController courseController = Get.put(CourseController());
 
   final DarkLightModeController darkLightModeController =
       Get.put(DarkLightModeController());
@@ -58,7 +66,7 @@ class MountainKidz extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    String initialRoute = '/adminDashboard';
+    String initialRoute = '/login';
 
     return GetMaterialApp(
       themeMode: ThemeService().getThemeMode(),
@@ -154,6 +162,42 @@ class MountainKidz extends StatelessWidget {
         GetPage(
           name: '/updateCourse',
           page: () => UpdateCourse(),
+        ),
+        GetPage(
+          name: '/quiz',
+          page: () => Quiz(),
+        ),
+        GetPage(
+          name: '/leaderboard',
+          page: () => Leaderboard(),
+        ),
+        GetPage(
+          name: '/quiz1',
+          page: () => Quiz1(),
+        ),
+        GetPage(
+          name: '/quiz2',
+          page: () => Quiz2(),
+        ),
+        GetPage(
+          name: '/quiz3',
+          page: () => Quiz3(),
+        ),
+        GetPage(
+          name: '/quiz4',
+          page: () => Quiz4(),
+        ),
+        GetPage(
+          name: '/quiz5',
+          page: () => Quiz5(),
+        ),
+        GetPage(
+          name: '/quizCompleted',
+          page: () => QuizCompleted(),
+        ),
+        GetPage(
+          name: '/quizLuck',
+          page: () => SpinWheel(),
         ),
         // GetPage(
         //   name: '/invoice',

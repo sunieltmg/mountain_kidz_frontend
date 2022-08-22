@@ -5,7 +5,6 @@ class MessageProvider {
   static successMessage(String title, String message) => Get.snackbar(
         title,
         message,
-        icon: const Icon(Icons.no_meals, color: Colors.white),
         duration: const Duration(seconds: 3),
         backgroundColor: Colors.green,
         colorText: Colors.white,
@@ -17,7 +16,6 @@ class MessageProvider {
   static errorMessage(String title, String message) => Get.snackbar(
         title,
         message,
-        icon: const Icon(Icons.no_meals, color: Colors.white),
         duration: const Duration(seconds: 3),
         backgroundColor: Colors.red,
         colorText: Colors.white,

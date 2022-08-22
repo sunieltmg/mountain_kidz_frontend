@@ -35,7 +35,8 @@ class CourseController extends GetxController {
 
   // update single food
   UpdateCourse(Map<String, String> data, String id) async {
-    var response = courseService.updateCourse(data, id);
+    var response = await courseService.updateCourse(data, id);
+    await getAllCourse();
     return response;
   }
 

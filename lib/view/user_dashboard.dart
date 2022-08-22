@@ -129,6 +129,20 @@ class UserDashboard extends StatelessWidget {
           ),
         ),
         appBar: AppBar(
+          actions: [
+            Padding(
+                padding: const EdgeInsets.only(right: 18.0),
+                child: GestureDetector(
+                    onTap: () {
+                      Get.toNamed('quizLuck');
+                    },
+                    child: Image(
+                      image: AssetImage('assets/fortune.png'),
+                      color: Get.isDarkMode ? Colors.white : Colors.black,
+                      width: 25,
+                      height: 25,
+                    ))),
+          ],
           centerTitle: true,
           title: const Text(
             'Mountain Kidz & Daycare',
