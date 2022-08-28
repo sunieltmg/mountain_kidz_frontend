@@ -8,5 +8,5 @@ https://www.figma.com/file/xukqaoef3yQgEIOPCCWPGQ/E-learning-application?node-id
 https://mountain-kidz.herokuapp.com/
 Routes
 - https://mountain-kidz.herokuapp.com/course
-- https://mountain-kidz.herokuapp.com/course/:id
+- https://mountain-kidz.herokuapp.com/course/62fb139a4c28621acba806ba
 
